@@ -11,11 +11,11 @@ def index():
     if request.method == "POST":
         expression = request.form.get("expression", "")
         try:
-            # Convert symbols for Python eval
+            # Safe eval for basic operations
             expr = expression.replace("×", "*").replace("÷", "/").replace("^", "**").replace("mod", "%")
             result = str(eval(expr))
             history.append(f"{expression} = {result}")
-            if len(history) > 20:  # Keep last 20 entries
+            if len(history) > 10:
                 history.pop(0)
         except Exception:
             result = "Error"
@@ -23,7 +23,7 @@ def index():
 
 if __name__ == "__main__":
     import os
-    # Render sets PORT dynamically; default to 5000 for local testing
+    # Render provides the PORT environment variable
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port)
 
