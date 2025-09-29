@@ -1,0 +1,21 @@
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-btn {
+  padding: 18px;
+  font-size: 1.15rem;
+  border-radius: 8px;
+}
+
+#display {
+  height: 64px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow: auto;
+  margin-top: 8px;
+}
